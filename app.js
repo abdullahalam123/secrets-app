@@ -24,7 +24,7 @@ app.use(session({ //setup session
 app.use(passport.initialize()); //start using passport
 app.use(passport.session()); //use passport for dealing with the session
 
-mongoose.connect("mongodb://localhost:27017/userDB"); //connect db
+mongoose.connect("mongodb+srv://abdullah:675rteapz@cluster0.tbihcje.mongodb.net/userDB"); //connect db
 
 const userSchema = new mongoose.Schema({ //create a schema
   email : String,
@@ -57,7 +57,7 @@ passport.use(new GoogleStrategy({
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
-    console.log(profile);
+    // console.log(profile);
     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       return done(err, user);
     });
